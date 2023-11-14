@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+
+  linkstack:
+    hostname: 'linkstack'
+    image: 'linkstackorg/linkstack:latest'
+    environment:
+      TZ: 'Europe/Bucharest'
+      SERVER_ADMIN: 'contact@clockworks.ro'
+      HTTP_SERVER_NAME: 'links.clockworks.ro'
+      HTTPS_SERVER_NAME: 'links.clockworks.ro'
+      LOG_LEVEL: 'info'
+      PHP_MEMORY_LIMIT: '512M'
+      UPLOAD_MAX_FILESIZE: '50M'
+    volumes:
+      - 'linkstack_data:/htdocs'
+    ports:
+      - '8188:80'
+      - '8190:443'
+    restart: unless-stopped
+
+volumes:
+  linkstack_data:
